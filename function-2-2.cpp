@@ -2,21 +2,19 @@
 
 using namespace std;
 
-int max_sub_sum(int *nums,int length){
-    int n_count = 0;
-    int max = 0;
-    for(int i=0 ; i<length ; ++i){
-        int sum = 0;
-        if(nums[i]<0){
-            n_count++;
-        }
-        for(int j=0 ; j<length ; ++j){
-            sum +=nums[i+j];
-            if(sum>max){
-                max=sum;
-            }
-        }
-    }
-    return (n_count == length) ? 0 : max;
+int max_sub_sum(int *nums,int length)
+{
+int sum = 0;
+int max_so_far = 0, max_ending_here = 1;
 
+for (int i = 0; i < length; i++) {
+sum = sum + *nums;;
+if (max_so_far < sum)
+max_so_far = sum;
+
+if (sum < 0)
+sum = 0;
+nums++; // inc pointer
+}
+return max_so_far;
 }
